@@ -15,4 +15,5 @@ jobs:
       - name: Publish NumericsConverter to openupm
         uses: Klemensas/action-autotag@1.2.3
         with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           package_root: "Assets/NumericsConverter"
