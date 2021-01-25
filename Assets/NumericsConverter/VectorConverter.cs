@@ -1,7 +1,14 @@
-using System.Numerics;
+﻿using SMatrix4x4 = System.Numerics.Matrix4x4;
+using SPlane = System.Numerics.Plane;
+using SQuaternion = System.Numerics.Quaternion;
 using SVector2 = System.Numerics.Vector2;
 using SVector3 = System.Numerics.Vector3;
 using SVector4 = System.Numerics.Vector4;
+using SVectorF = System.Numerics.Vector<float>;
+using SVectorI = System.Numerics.Vector<int>;
+using UMatrix4x4 = UnityEngine.Matrix4x4;
+using UPlane = UnityEngine.Plane;
+using UQuaternion = UnityEngine.Quaternion;
 using UVector2 = UnityEngine.Vector2;
 using UVector2Int = UnityEngine.Vector2Int;
 using UVector3 = UnityEngine.Vector3;
@@ -13,15 +20,25 @@ namespace NumericsConverter
     public static class VectorConverter
     {
         public static SVector2 ToSystem(this UVector2 vector) => new SVector2(vector.x, vector.y);
+        public static SVectorF ToSystemGeneric(this UVector2 vector) => new SVectorF(new[] { vector.x, vector.y });
         public static UVector2 ToUnity(this SVector2 vector) => new UVector2(vector.X, vector.Y);
         public static SVector3 ToSystem(this UVector3 vector) => new SVector3(vector.x, vector.y, vector.z);
+        public static SVectorF ToSystemGeneric(this UVector3 vector) => new SVectorF(new[] { vector.x, vector.y, vector.z });
         public static UVector3 ToUnity(this SVector3 vector) => new UVector3(vector.X, vector.Y, vector.Z);
         public static SVector4 ToSystem(this UVector4 vector) => new SVector4(vector.x, vector.y, vector.z, vector.w);
+        public static SVectorF ToSystemGeneric(this UVector4 vector) => new SVectorF(new[] { vector.x, vector.y, vector.z, vector.w });
         public static UVector4 ToUnity(this SVector4 vector) => new UVector4(vector.X, vector.Y, vector.Z, vector.W);
-        public static SVector ToSystem(this UVector2Int vector) => new SVector(new[] { vector.x, vector.y });
-        public static UVector2Int ToUnity2(this SVector vector) => new UVector2Int(vector[0], vector[1]);
-        public static SVector ToSystem(this UVector3Int vector) => new SVector(new[] { vector.x, vector.y, vector.z });
-        public static UVector3Int ToUnity3(this SVector vector) => new UVector3Int(vector[0], vector[1], vector[2]);
+        public static SVectorI ToSystem(this UVector2Int vector) => new SVectorI(new[] { vector.x, vector.y });
+        public static UVector2Int ToUnity2(this SVectorI vector) => new UVector2Int(vector[0], vector[1]);
+        public static SVectorI ToSystem(this UVector3Int vector) => new SVectorI(new[] { vector.x, vector.y, vector.z });
+        public static UVector3Int ToUnity3(this SVectorI vector) => new UVector3Int(vector[0], vector[1], vector[2]);
+
+        public static SQuaternion ToSystem(this UQuaternion quaternion) => new SQuaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
+        public static UQuaternion ToUnity(this SQuaternion quaternion) => new UQuaternion(quaternion.X, quaternion.Y, quaternion.Z, quaternion.W);
+
+        public static SPlane ToSystem(this UPlane plane) => new SPlane(plane.normal.ToSystem(), plane.distance);
+        public static UPlane ToUnity(this SPlane plane) => new UPlane(plane.Normal.ToUnity(), plane.D);
+
         public static SMatrix4x4 ToSystem(this UMatrix4x4 matrix) => new SMatrix4x4(
             matrix.m00, matrix.m01, matrix.m02, matrix.m03,
             matrix.m10, matrix.m11, matrix.m12, matrix.m13,
@@ -47,10 +64,5 @@ namespace NumericsConverter
             m32 = matrix.M43,
             m33 = matrix.M44,
         };
-
-        public static SQuaternion ToSystem(this UQuaternion quaternion) => new SQuaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
-        public static UQuaternion ToUnity(this SQuaternion quaternion) => new UQuaternion(quaternion.X, quaternion.Y, quaternion.Z, quaternion.W);
-        public static SPlane ToSystem(this UPlane plane) => new SPlane(plane.normal.ToSystem(), plane.distance);
-        public static UPlane ToUnity(this SPlane plane) => new UPlane(plane.Normal.ToUnity(), plane.D);
     }
 }
