@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2.1.0
 
-      - name: Publish LinkerGenerator to openupm
+      - name: Publish NumericsConverter to openupm
         uses: Klemensas/action-autotag@1.2.3
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          package_root: "Assets/LinkerGenerator"
+          package_root: "Assets/NumericsConverter"
