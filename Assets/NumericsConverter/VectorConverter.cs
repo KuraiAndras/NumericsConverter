@@ -55,7 +55,15 @@ namespace NumericsConverter
         /// </summary>
         /// <param name="vector">Convertee</param>
         /// <returns>Converted</returns>
-        public static SVectorF ToSystemGeneric(this UVector3 vector) => new SVectorF(new[] { vector.x, vector.y, vector.z });
+        public static SVectorF ToSystemGeneric(this UVector3 vector)
+        {
+            var items = new float[SVectorF.Count];
+            items[0] = vector.x;
+            items[1] = vector.y;
+            items[2] = vector.z;
+
+            return new SVectorF(items);
+        }
 
         /// <summary>
         /// Convert <see cref="System.Numerics.Vector3"/> to <see cref="UnityEngine.Vector3"/>
