@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+    <PackageReference Include="Unity3D.SDK" Version="2020.2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\NumericsConverter\Assets\NumericsConverter\VectorConverter.cs"/>
+  </ItemGroup>
+
+</Project>
