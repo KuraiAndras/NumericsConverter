@@ -21,7 +21,7 @@ namespace NumericsConverter
     /// <summary>
     /// Converts equivalent types between System.Numerics and UnityEngine vector types
     /// </summary>
-    public static class VectorConverter
+    public static class ConverterExtensions
     {
         /// <summary>
         /// Convert <see cref="UnityEngine.Vector2"/> to <see cref="System.Numerics.Vector2"/>
