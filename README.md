@@ -7,7 +7,7 @@ Conversion methods between Unity vectory types and System.Numerics.Vector as ext
 The recommended way of installation is through open upm.
 
 ```pwsh
-openupm add com.kuraiandras.linkergenerator
+openupm add com.kuraiandras.numericsconverter
 ```
 
 ```csharp
