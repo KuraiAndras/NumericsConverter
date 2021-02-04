@@ -1,4 +1,5 @@
-﻿using SMatrix4x4 = System.Numerics.Matrix4x4;
+﻿using System.Runtime.InteropServices;
+using SMatrix4x4 = System.Numerics.Matrix4x4;
 using SPlane = System.Numerics.Plane;
 using SQuaternion = System.Numerics.Quaternion;
 using SVector2 = System.Numerics.Vector2;
@@ -29,12 +30,19 @@ namespace NumericsConverter
         /// <returns>Converted</returns>
         public static SVector2 ToSystem(this UVector2 vector) => new SVector2(vector.x, vector.y);
 
+        [StructLayout(LayoutKind.Explicit)]
+        private struct VectorUnion2
+        {
+            [FieldOffset(0)] public UVector2 UVector;
+            [FieldOffset(0)] public SVectorF SVector;
+        }
+
         /// <summary>
         /// Convert <see cref="UnityEngine.Vector2"/> to <see cref="System.Numerics.Vector"/>
         /// </summary>
         /// <param name="vector">Convertee</param>
         /// <returns>Converted</returns>
-        public static SVectorF ToSystemGeneric(this UVector2 vector) => new SVectorF(new[] { vector.x, vector.y });
+        public static SVectorF ToSystemGeneric(this UVector2 vector) => new VectorUnion2 { UVector = vector }.SVector;
 
         /// <summary>
         /// Convert <see cref="System.Numerics.Vector2"/> to <see cref="UnityEngine.Vector2"/>
@@ -50,20 +58,19 @@ namespace NumericsConverter
         /// <returns>Converted</returns>
         public static SVector3 ToSystem(this UVector3 vector) => new SVector3(vector.x, vector.y, vector.z);
 
+        [StructLayout(LayoutKind.Explicit)]
+        private struct VectorUnion3
+        {
+            [FieldOffset(0)] public UVector3 UVector;
+            [FieldOffset(0)] public SVectorF SVector;
+        }
+
         /// <summary>
         /// Convert <see cref="UnityEngine.Vector3"/> to <see cref="System.Numerics.Vector"/>
         /// </summary>
         /// <param name="vector">Convertee</param>
         /// <returns>Converted</returns>
-        public static SVectorF ToSystemGeneric(this UVector3 vector)
-        {
-            var items = new float[SVectorF.Count];
-            items[0] = vector.x;
-            items[1] = vector.y;
-            items[2] = vector.z;
-
-            return new SVectorF(items);
-        }
+        public static SVectorF ToSystemGeneric(this UVector3 vector) => new VectorUnion3 { UVector = vector }.SVector;
 
         /// <summary>
         /// Convert <see cref="System.Numerics.Vector3"/> to <see cref="UnityEngine.Vector3"/>
@@ -79,12 +86,19 @@ namespace NumericsConverter
         /// <returns>Converted</returns>
         public static SVector4 ToSystem(this UVector4 vector) => new SVector4(vector.x, vector.y, vector.z, vector.w);
 
+        [StructLayout(LayoutKind.Explicit)]
+        private struct VectorUnion4
+        {
+            [FieldOffset(0)] public UVector4 UVector;
+            [FieldOffset(0)] public SVectorF SVector;
+        }
+
         /// <summary>
         /// Convert <see cref="UnityEngine.Vector4"/> to <see cref="System.Numerics.Vector"/>
         /// </summary>
         /// <param name="vector">Convertee</param>
         /// <returns>Converted</returns>
-        public static SVectorF ToSystemGeneric(this UVector4 vector) => new SVectorF(new[] { vector.x, vector.y, vector.z, vector.w });
+        public static SVectorF ToSystemGeneric(this UVector4 vector) => new VectorUnion4 { UVector = vector }.SVector;
 
         /// <summary>
         /// Convert <see cref="System.Numerics.Vector4"/> to <see cref="UnityEngine.Vector4"/>
