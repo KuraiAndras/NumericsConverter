@@ -1,0 +1,14 @@
+{
+    "name": "NumericsConverter.Sample",
+    "references": [
+        "NumericsConverter"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
