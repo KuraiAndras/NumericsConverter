@@ -4,11 +4,22 @@ Conversion methods between Unity vectory types and System.Numerics.Vector as ext
 
 ## Getting Started
 
-The recommended way of installation is through open upm.
+The recommended way of installation is through OpenUPM.
 
 ```pwsh
 openupm add com.kuraiandras.numericsconverter
 ```
+
+Or you can add it with a git dependency:
+
+```
+// For latest always
+"com.kuraiandras.numericsconverter": "https://github.com/KuraiAndras/NumericsConverter.git?path=/NumericsConverter/Assets/NumericsConverter"
+
+// For specific version
+"com.kuraiandras.numericsconverter": "https://github.com/KuraiAndras/NumericsConverter.git?path=/NumericsConverter/Assets/NumericsConverter#2.0.1"
+```
+
 
 ```csharp
 using NumericsConverter; // use this namespace for the exentsion methods
