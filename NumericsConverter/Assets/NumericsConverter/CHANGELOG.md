@@ -1,3 +1,6 @@
+# Version 2.0.1
+- Removed unneeded unsafe from asmdef
+
 # Version 2.0.0
 
 - Fixed faulty conversions for the generic vector types
